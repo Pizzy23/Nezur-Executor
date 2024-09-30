@@ -1,7 +1,6 @@
-import { Controller, Post, Body, HttpException, HttpStatus} from '@nestjs/common';
-import { LoginDto } from 'src/view/dto/login/login.dto';
+import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
-
+import { LoginDto } from 'src/view/dto/login/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -9,12 +8,9 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
-    const user = await this.authService.validateUser(
-      loginDto.email,
-      loginDto.password,
-    );
+    const user = await this.authService.validateUser(loginDto.email, loginDto.password);
     if (!user) {
-      throw new HttpException('Email ou senha incorretos',HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException('Credenciais inválidas');
     }
     return this.authService.login(user);
   }

@@ -4,7 +4,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { UserService } from 'src/context/service';
 
-
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -21,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
     const user = await this.usersService.findOne(payload.sub);
     if (!user) {
-      throw new HttpException('Usuário inválido.', HttpStatus.UNAUTHORIZED)
+      throw new HttpException('Usuário inválido.', HttpStatus.UNAUTHORIZED);
     }
     return user;
   }

@@ -1,7 +1,7 @@
 export enum StatusEnum {
     VALID = 'VALID',
-    REFUND = 'REFUND',
     INVALID = 'INVALID',
+    REFUND = 'REFUND',
     ANALYSE = 'ANALYSE',
   }
   

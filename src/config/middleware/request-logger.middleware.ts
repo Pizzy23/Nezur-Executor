@@ -17,9 +17,7 @@ export class RequestLoggerMiddleware implements NestMiddleware {
           return `${timestamp} [${level.toUpperCase()}]: ${message}`;
         }),
       ),
-      transports: [
-        new winston.transports.File({ filename: 'log.txt' }),
-      ],
+      transports: [new winston.transports.File({ filename: 'log.txt' })],
     });
   }
 
@@ -29,7 +27,7 @@ export class RequestLoggerMiddleware implements NestMiddleware {
     res.on('finish', () => {
       const { statusCode } = res;
       const logMessage = `Request: ${method} - ${originalUrl} from ${ip}, Status Code: ${statusCode}`;
-
+      console.log(logMessage);
       if (statusCode !== 500) {
         this.logger.info(logMessage);
       } else {

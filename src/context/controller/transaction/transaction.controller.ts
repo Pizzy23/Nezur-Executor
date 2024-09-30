@@ -6,13 +6,10 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
-  UsePipes,
-  ValidationPipe,
-  UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import {
-  ApiOkResponse,
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -22,6 +19,7 @@ import {
   TransferEntity,
   UpdateTransferDto,
 } from 'src/view/dto';
+import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
 
 @ApiTags('Transaction')
 @Controller('/Transaction')
@@ -36,6 +34,8 @@ export class TransactionController {
     description: 'Transferencia criado com sucesso.',
     type: TransferEntity,
   })
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Post('/')
   async postTransaction(@Body() input: CreateTransferDto) {
     return await this.service.transferCurrent(input);
@@ -49,6 +49,8 @@ export class TransactionController {
     description: 'Todas as Transferencia feitas.',
     type: TransferEntity,
   })
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Get('/')
   async getTransaction() {
     return await this.service.getAllTransfer();
@@ -62,6 +64,8 @@ export class TransactionController {
     description: 'Ajusta a transferencia atual.',
     type: TransferEntity,
   })
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Patch(':id')
   async update(
     @Param('id') id: string,

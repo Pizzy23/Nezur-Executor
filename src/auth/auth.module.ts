@@ -7,7 +7,6 @@ import { AuthController } from './controller/auth.controller';
 import { AuthService } from './service/auth.service';
 import { JwtStrategy } from './service/jwt.strategy';
 
-
 @Module({
   imports: [
     ContextModule,

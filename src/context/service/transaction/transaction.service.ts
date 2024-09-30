@@ -68,6 +68,12 @@ export class TransactionService {
           return 'Sua transação é inválida, por favor, entre em contato com o suporte.';
 
         case StatusEnum.REFUND:
+          await this.repository.update({
+            where: { id: parseInt(id) },
+            data: {
+              status: StatusEnum.REFUND,
+            },
+          });
           await this.userRepository.update({
             where: { id: existingSender.id },
             data: {
@@ -84,6 +90,13 @@ export class TransactionService {
           return 'Sua transação foi negada.';
 
         case StatusEnum.VALID:
+          await this.repository.update({
+            where: { id: parseInt(id) },
+            data: {
+              status: StatusEnum.VALID,
+            },
+          });
+
           await this.userRepository.update({
             where: { id: existingSender.id },
             data: {
