@@ -1,0 +1,10 @@
+2024-09-30 13:34:58 [INFO]: Request: GET - /Transaction from ::1, Status Code: 200
+2024-09-30 13:35:06 [INFO]: Request: GET - /Users from ::1, Status Code: 200
+2024-09-30 13:35:48 [INFO]: Request: PATCH - /Users/1 from ::1, Status Code: 200
+2024-09-30 13:35:52 [INFO]: Request: GET - /Users from ::1, Status Code: 200
+2024-09-30 13:37:06 [INFO]: Request: POST - /Transaction from ::1, Status Code: 201
+2024-09-30 13:37:11 [INFO]: Request: GET - /Transaction from ::1, Status Code: 200
+2024-09-30 13:37:49 [ERROR]: Request: PATCH - /Transaction/1 from ::1, Status Code: 500
+2024-09-30 13:45:38 [ERROR]: Request: PATCH - /Transaction/1 from ::1, Status Code: 500
+2024-09-30 13:46:05 [INFO]: Request: GET - /Transaction from ::1, Status Code: 304
+2024-09-30 13:46:49 [INFO]: Request: PATCH - /Transaction/1 from ::1, Status Code: 200
